@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+    <!-- Importe jQuery e o plugin iCheck -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.3/icheck.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.3/skins/square/red.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <div class="box">
+            <div class="firstcontent">
+                <p id="text">To-Do List</p>
+                <img id="listlogo" src="654116.png" alt="list">
+            </div>
+            <div class="secondcontent">
+                <input id="textwhite" placeholder="Add your task" class="text white button"> 
+                <button type="submit" onclick="newtask()" class="orange">Add</button>
+                <button type="submit" onclick="removeTask()" class="red">Remove</button>
+            </div>
+        </div>
+        <div class="aa">
+            
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function(){
+            $('.checkbox').iCheck({
+                checkboxClass: 'icheckbox_square-red',
+                radioClass: 'iradio_square-red'
+            });
+        });
+
+        function newtask(){
+            var texto = document.querySelector("#textwhite").value;
+            var newbox = $('.aa');
+            newbox.append('<div class="task"><div class="layout"><input class="checkbox" type="checkbox"><span class="taskcontent">' + texto + '</span></div></div>');
+            $('.checkbox').iCheck({
+                checkboxClass: 'icheckbox_square-red',
+                radioClass: 'iradio_square-red'
+            });
+        }
+
+        function removeTask(){
+            var texto = document.querySelector("#textwhite").value;
+            var tasks = document.querySelectorAll(".task");
+
+            let taskFound = false;
+
+            tasks.forEach(function(task) {
+                var taskContent = task.querySelector(".taskcontent").innerText;
+                if (taskContent === texto) {
+                    task.remove();
+                    taskFound = true;
+                }
+            });
+
+            if (!taskFound) {
+                window.alert("Task not found.");
+            }
+        }
+    </script>    
+</body>
+</html>
